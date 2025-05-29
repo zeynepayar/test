@@ -1,10 +1,13 @@
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.notNullValue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import io.restassured.response.Response;
 
 public class Rest {
 
@@ -12,6 +15,7 @@ public class Rest {
     public static void setup() {
         RestAssured.baseURI = "https://reqres.in/api";
     }
+
 
     @Test
     public void getUserById() {
