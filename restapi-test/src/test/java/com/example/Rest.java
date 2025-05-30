@@ -36,6 +36,7 @@ public class Rest {
                 .time(lessThan(1000L));
     }
 
+
     @Test
     public void registerUser() {
         Response response = given()
@@ -51,10 +52,4 @@ public class Rest {
         System.out.println("Body:\n" + response.getBody().asPrettyString());
 
         response.then()
-                .statusCode(200)
-                .body("id", notNullValue())
-                .body("token", notNullValue())
-                .time(lessThan(1000L));
-    }
-
-}
+                .

@@ -11,10 +11,10 @@
   <name>restapi-test</name>
   <url>http://maven.apache.org</url>
 
-  <!-- Java 15 ve üstü ile derlemek için compiler ayarları -->
   <properties>
-    <maven.compiler.source>24</maven.compiler.source>
-    <maven.compiler.target>24</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -25,7 +25,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- RestAssured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
@@ -33,7 +32,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Hamcrest for assertions -->
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest</artifactId>
@@ -42,9 +40,16 @@
     </dependency>
   </dependencies>
 
-  <!-- Surefire plugin, testlerin düzgün çalışması için (opsiyonel) -->
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>17</release> <!-- release ile source ve target aynı anda ayarlanır -->
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -52,7 +57,7 @@
         <configuration>
           <forkCount>1</forkCount>
           <reuseForks>true</reuseForks>
-          <argLine>--enable-preview</argLine> <!-- Eğer preview özellik kullanıyorsan -->
+          <!-- Preview özellik kullanılmayacaksa argLine gerekmez -->
         </configuration>
       </plugin>
     </plugins>
